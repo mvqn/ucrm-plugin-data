@@ -1,0 +1,257 @@
+<?php
+declare(strict_types=1);
+
+namespace UCRM\Data\Models;
+require __DIR__."/../../../../vendor/autoload.php";
+
+use PDO;
+use UCRM\Data\Model;
+
+
+final class Plugin extends Model
+{
+    /** @const string The column name of the PRIMARY KEY of this Model. */
+    protected const PRIMARY_KEY = "id"; 
+    
+    /** @const string The table name of this Model. */
+    protected const TABLE_NAME = "plugin";
+
+    /**
+     * @var int
+     */
+    protected $id;
+    
+    /**
+     * @return int | null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    
+    /**
+     * @var string
+     */
+    protected $name;
+    
+    /**
+     * @return string | null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    
+    /**
+     * @param string $value
+     */
+    public function setName(string $value): void
+    {
+        $this->name = $value;
+    }                
+
+    /**
+     * @var string
+     */
+    protected $display_name;
+    
+    /**
+     * @return string | null
+     */
+    public function getDisplayName(): ?string
+    {
+        return $this->display_name;
+    }
+    
+    /**
+     * @param string $value
+     */
+    public function setDisplayName(string $value): void
+    {
+        $this->display_name = $value;
+    }                
+
+    /**
+     * @var string
+     */
+    protected $description;
+    
+    /**
+     * @return string | null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    
+    /**
+     * @param string $value
+     */
+    public function setDescription(string $value): void
+    {
+        $this->description = $value;
+    }                
+
+    /**
+     * @var string
+     */
+    protected $url;
+    
+    /**
+     * @return string | null
+     */
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+    
+    /**
+     * @param string $value
+     */
+    public function setUrl(string $value): void
+    {
+        $this->url = $value;
+    }                
+
+    /**
+     * @var string
+     */
+    protected $author;
+    
+    /**
+     * @return string | null
+     */
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+    
+    /**
+     * @param string $value
+     */
+    public function setAuthor(string $value): void
+    {
+        $this->author = $value;
+    }                
+
+    /**
+     * @var string
+     */
+    protected $version;
+    
+    /**
+     * @return string | null
+     */
+    public function getVersion(): ?string
+    {
+        return $this->version;
+    }
+    
+    /**
+     * @param string $value
+     */
+    public function setVersion(string $value): void
+    {
+        $this->version = $value;
+    }                
+
+    /**
+     * @var string
+     */
+    protected $min_ucrm_version;
+    
+    /**
+     * @return string | null
+     */
+    public function getMinUcrmVersion(): ?string
+    {
+        return $this->min_ucrm_version;
+    }
+    
+    /**
+     * @param string $value
+     */
+    public function setMinUcrmVersion(string $value): void
+    {
+        $this->min_ucrm_version = $value;
+    }                
+
+    /**
+     * @var string
+     */
+    protected $max_ucrm_version;
+    
+    /**
+     * @return string | null
+     */
+    public function getMaxUcrmVersion(): ?string
+    {
+        return $this->max_ucrm_version;
+    }
+    
+    /**
+     * @param string $value
+     */
+    public function setMaxUcrmVersion(string $value): void
+    {
+        $this->max_ucrm_version = $value;
+    }                
+
+    /**
+     * @var bool
+     */
+    protected $enabled;
+    
+    /**
+     * @return bool | null
+     */
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+    
+    /**
+     * @param string $value
+     */
+    public function setEnabled(bool $value): void
+    {
+        $this->enabled = $value;
+    }                
+
+    /**
+     * @var string
+     */
+    protected $execution_period;
+    
+    /**
+     * @return string | null
+     */
+    public function getExecutionPeriod(): ?string
+    {
+        return $this->execution_period;
+    }
+    
+    /**
+     * @param string $value
+     */
+    public function setExecutionPeriod(string $value): void
+    {
+        $this->execution_period = $value;
+    }                
+
+    
+    
+    
+    
+    
+    /**
+     * Plugin constructor.
+     * @param PDO $pdo PHP Data Object
+     * @param array $populate (optional) Values with which to initialize this object.
+     */ 
+    public function __construct(PDO $pdo, array $populate = [])
+    {
+        parent::__construct($pdo, "plugin");
+    }
+}

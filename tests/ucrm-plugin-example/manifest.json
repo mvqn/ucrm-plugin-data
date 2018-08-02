@@ -1,0 +1,44 @@
+{
+  "version": "1",
+  "information": {
+    "name": "ucrm-plugin-example",
+    "displayName": "UCRM Plugin Example",
+    "description": "UCRM Plugin Example for Testing Purposes",
+    "url": "https://github.com/mvqn/ucrm-plugin-example",
+    "version": "1.0.0",
+    "ucrmVersionCompliancy": {
+      "min": "2.11.0",
+      "max": null
+    },
+    "author": "Ryan Spaeth <rspaeth@mvqn.net>"
+  },
+  "configuration": [
+    {
+      "key": "psql-username",
+      "label": "PostgreSQL Username",
+      "description": "The username defined in '/home/ucrm/docker-compose.env' as 'POSTGRES_USER' or if left blank, pulled from the environment variables on first execution.",
+      "required": 0
+    },
+    {
+      "key": "psql-password",
+      "label": "PostgreSQL Password",
+      "description": "The password defined in '/home/ucrm/docker-compose.env' as 'POSTGRES_PASSWORD' or if left blank, pulled from the environment variables on first execution.",
+      "required": 0,
+      "type": "textarea"
+    },
+    {
+      "key": "psql-database",
+      "label": "PostgreSQL Database",
+      "description": "The database defined in '/home/ucrm/docker-compose.env' as 'POSTGRES_DB' or if left blank, pulled from the environment variables on first execution.",
+      "required": 0,
+      "type": "choice",
+      "choices": {
+        "PostgreSQL": "postgresql",
+        "UCRM": "ucrm"
+      }
+    }
+
+
+
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "mvqn/ucrm-plugin-example",
+  "description": "UCRM Plugin Example for Testing",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ryan Spaeth",
+      "email": "rspaeth@mvqn.net"
+    }
+  ],
+  "require": {
+    "php": "~7.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~7"
+  },
+  "autoload": {
+    "psr-4": {
+    }
+  }
+}
