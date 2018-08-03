@@ -9,7 +9,7 @@ namespace UCRM\Data\Models;
  *
  * @package UCRM\Data\Models
  * @author  Ryan Spaeth <rspaeth@mvqn.net>
- * @version Auto-Generated on 08/02/2018 @ 19:07:41 (GMT-07:00) by MAPPER  
+ * @version Auto-Generated on 08/02/2018 @ 19:59:10 (GMT-07:00) by MAPPER  
  */
 final class Plugin extends \UCRM\Data\Model
 {
@@ -216,7 +216,7 @@ final class Plugin extends \UCRM\Data\Model
     }
     
     /**
-     * @param string $value
+     * @param bool $value
      */
     public function setEnabled(bool $value): void
     {

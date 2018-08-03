@@ -2,29 +2,41 @@
 declare(strict_types=1);
 
 namespace UCRM\Data;
-//require __DIR__ . "/../../../vendor/autoload.php";
-
-use PDO;
-use UCRM\Coder\{Code, Casing};
-use UCRM\Data\MAPPER;
 
 
+/**
+ * Class Model
+ *
+ * @package UCRM\Data
+ * @author  Ryan Spaeth <rspaeth@mvqn.net>
+ */
 abstract class Model
 {
-
     /**
-     * Model constructor.
-     * @param array $values
+     * @param array $values An optional array of values for which to use to initialize this Model.
      */
-    public function __construct(/*string $table,*/ array $values = [])
+    public function __construct(array $values = [])
     {
-        //$this->table = $table; // TODO: No longer needed?
-        //$this->populate($object);
-
         foreach($values as $key => $value)
             $this->$key = $value;
-
     }
+
+    /**
+     * @return string Returns a JSON representation of this Model.
+     */
+    public function __toString()
+    {
+        // Get an array of all Model properties.
+        $assoc = get_object_vars($this);
+
+        // Remove any that contain NULL values.
+        $assoc = array_filter($assoc);
+
+        // Return the array as a JSON string.
+        return json_encode($assoc, JSON_UNESCAPED_SLASHES);
+    }
+
+
 
     /**
      * @param int $id The ID of the Model to query.
@@ -56,7 +68,7 @@ abstract class Model
     {
         $class = get_called_class();
         $table = $class::TABLE_NAME;
-        $primary_key = $class::PRIMARY_KEY;
+        //$primary_key = $class::PRIMARY_KEY;
 
         //$select = $columns === [] ? "*" : implode(", ", $columns);
         $query = "SELECT * FROM $table";
@@ -84,7 +96,7 @@ abstract class Model
     {
         $class = get_called_class();
         $table = $class::TABLE_NAME;
-        $primary_key = $class::PRIMARY_KEY;
+        //$primary_key = $class::PRIMARY_KEY;
 
         $query = "SELECT * FROM $table WHERE $column = '$value'";
         $results = Database::query($query);
@@ -110,7 +122,7 @@ abstract class Model
     {
         $class = get_called_class();
         $table = $class::TABLE_NAME;
-        $primary_key = $class::PRIMARY_KEY;
+        //$primary_key = $class::PRIMARY_KEY;
 
         $query = "SELECT * FROM $table WHERE $column LIKE '$pattern'";
 
@@ -129,19 +141,6 @@ abstract class Model
 
 
 
-
-
-
-
-    public function __toString()
-    {
-        $assoc = get_object_vars($this);
-        //unset($assoc["pdo"]);
-        //unset($assoc["table"]);
-        $assoc = array_filter($assoc);
-
-        return json_encode($assoc, JSON_UNESCAPED_SLASHES);
-    }
-
+    // TODO: Add Model->save() functionality?
 
 }

@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 namespace UCRM\Data;
-//require __DIR__ . "/../../../vendor/autoload.php";
 
 use PDO;
 use PDOStatement;
@@ -10,7 +9,10 @@ use UCRM\Data\Exceptions\DatabaseQueryException;
 
 /**
  * Class Database
+ *
  * @package UCRM\Data
+ * @author  Ryan Spaeth <rspaeth@mvqn.net>
+ * @final
  */
 final class Database
 {

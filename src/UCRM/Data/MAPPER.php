@@ -8,6 +8,12 @@ use PDO;
 use UCRM\Coder\{Code, Casing};
 
 
+/**
+ * Class MAPPER
+ *
+ * @package UCRM\Data
+ * @author  Ryan Spaeth <rspaeth@mvqn.net>
+ */
 final class MAPPER
 {
     private const MODEL_PATH = __DIR__."/./Models";
@@ -54,6 +60,7 @@ final class MAPPER
             declare(strict_types=1);
             
             namespace UCRM\Data\Models;
+            
             
             
             /**
@@ -337,7 +344,7 @@ final class MAPPER
                 }
                 
                 /**
-                 * @param string \$value
+                 * @param $php_type \$value
                  */
                 public function $set_name($php_type \$value): void
                 {
