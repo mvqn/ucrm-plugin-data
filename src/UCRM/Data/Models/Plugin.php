@@ -4,12 +4,13 @@ declare(strict_types=1);
 namespace UCRM\Data\Models;
 
 
+
 /**
  * Class Plugin
  *
  * @package UCRM\Data\Models
  * @author  Ryan Spaeth <rspaeth@mvqn.net>
- * @version Auto-Generated on 08/02/2018 @ 19:59:10 (GMT-07:00) by MAPPER  
+ * @version Auto-Generated on 08/03/2018 @ 09:07:17 (GMT-07:00) by MAPPER  
  */
 final class Plugin extends \UCRM\Data\Model
 {

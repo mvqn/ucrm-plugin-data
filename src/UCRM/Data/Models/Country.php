@@ -4,12 +4,13 @@ declare(strict_types=1);
 namespace UCRM\Data\Models;
 
 
+
 /**
  * Class Country
  *
  * @package UCRM\Data\Models
  * @author  Ryan Spaeth <rspaeth@mvqn.net>
- * @version Auto-Generated on 08/02/2018 @ 19:09:06 (GMT-07:00) by MAPPER  
+ * @version Auto-Generated on 08/03/2018 @ 09:07:16 (GMT-07:00) by MAPPER  
  */
 final class Country extends \UCRM\Data\Model
 {

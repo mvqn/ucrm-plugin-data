@@ -4,12 +4,13 @@ declare(strict_types=1);
 namespace UCRM\Data\Models;
 
 
+
 /**
  * Class AppKey
  *
  * @package UCRM\Data\Models
  * @author  Ryan Spaeth <rspaeth@mvqn.net>
- * @version Auto-Generated on 08/02/2018 @ 19:07:38 (GMT-07:00) by MAPPER  
+ * @version Auto-Generated on 08/03/2018 @ 10:01:40 (GMT-07:00) by MAPPER  
  */
 final class AppKey extends \UCRM\Data\Model
 {
