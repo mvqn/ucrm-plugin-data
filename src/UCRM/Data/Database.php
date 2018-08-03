@@ -7,8 +7,12 @@ use PDO;
 use PDOStatement;
 use UCRM\Data\Exceptions\DatabaseQueryException;
 
+
+
 /**
  * Class Database
+ *
+ * A class to interact with the UCRM database directly from code.
  *
  * @package UCRM\Data
  * @author  Ryan Spaeth <rspaeth@mvqn.net>
@@ -16,12 +20,14 @@ use UCRM\Data\Exceptions\DatabaseQueryException;
  */
 final class Database
 {
-    /** @var PDO|null  */
+    /** @var PDO|null $_pdo The singleton instance of a PDO to use for all database interactions. */
     private static $_pdo = null;
 
     /**
-     * @param PDO $pdo
-     * @return PDO
+     * Connects to database using the provided PDO and stores it for further use.
+     *
+     * @param PDO $pdo A PDO to use for all database interactions.
+     * @return PDO Returns the same PDO as provided.
      */
     public static function connect(PDO $pdo): PDO
     {
@@ -30,15 +36,27 @@ final class Database
     }
 
     /**
+     * Disconnects from an existing database and removed the stored PDO.
      *
+     * @return bool Returns true if the database was successfully disconnected, otherwise false.
      */
-    public static function disconnect(): void
+    public static function disconnect(): bool
     {
-        self::$_pdo = null;
+        if(self::$_pdo !== null)
+        {
+            self::$_pdo = null;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
-     * @return bool
+     * Checks to see if we have connected to the database already.
+     *
+     * @return bool Returns true if a stored PDO exists, otherwise false.
      */
     public static function connected(): bool
     {
@@ -46,7 +64,9 @@ final class Database
     }
 
     /**
-     * @return PDO|null
+     * Gets the stored PDO.
+     *
+     * @return PDO|null Returns the stored PDO or null if none exists.
      */
     public static function PDO(): ?PDO
     {
@@ -54,10 +74,13 @@ final class Database
     }
 
 
+
     /**
-     * @param string $query
-     * @return PDOStatement
-     * @throws DatabaseQueryException
+     * Executes a query against the database.
+     *
+     * @param string $query The query string to execute.
+     * @return PDOStatement Returns a PDOStatement for parsing.
+     * @throws DatabaseQueryException Throws an exception if the database is not already connected.
      */
     public static function query(string $query): PDOStatement
     {
@@ -68,10 +91,5 @@ final class Database
 
         return $results;
     }
-
-
-
-
-
 
 }
