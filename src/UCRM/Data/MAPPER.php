@@ -387,7 +387,7 @@ final class MAPPER
 
             // Set come default values for the column.
             $col_name = $col["name"];
-            $php_type = "";
+            //$php_type = "";
             //$sql_type = "";
 
             // Check the SQL Native Type...
