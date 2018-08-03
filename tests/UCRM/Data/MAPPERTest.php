@@ -7,6 +7,7 @@
  */
 
 use UCRM\Data\MAPPER;
+use UCRM\Data\Database;
 use PHPUnit\Framework\TestCase;
 
 class MAPPERTest extends TestCase
@@ -34,19 +35,15 @@ class MAPPERTest extends TestCase
             $options
         );
 
-
-        $results = $this->pdo->query("SELECT * FROM country");
-
-        foreach($results as $result)
-        {
-            echo $result["name"]."\n";
-        }
+        Database::connect($this->pdo);
     }
 
 
 
     public function testCreate()
     {
+        MAPPER::create($this->pdo, "country");
+
 
     }
 }

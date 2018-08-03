@@ -2,10 +2,10 @@
 declare(strict_types=1);
 
 namespace UCRM\Data;
-require __DIR__ . "/../../../vendor/autoload.php";
+//require __DIR__ . "/../../../vendor/autoload.php";
 
 use PDO;
-use Coder\{Code, Casing};
+use UCRM\Coder\{Code, Casing};
 
 
 final class MAPPER
@@ -47,43 +47,35 @@ final class MAPPER
         $uses_code = implode(PHP_EOL, $uses);
         $uses_code = Code::adjust_indent($uses_code, 0, -16);
 
+        $timestamp = (new \DateTime())->format("m/d/Y @ H:i:s (\G\M\TP)")." by MAPPER";
 
         $class_code = Code::inline("
             <?php
             declare(strict_types=1);
             
             namespace UCRM\Data\Models;
-            require __DIR__.\"/../../../../vendor/autoload.php\";
             
-            use PDO;
-            use UCRM\Data\Model;
-
             
-            final class $class_name extends Model
+            /**
+             * Class $class_name
+             *
+             * @package UCRM\Data\Models
+             * @author  Ryan Spaeth <rspaeth@mvqn.net>
+             * @version Auto-Generated on $timestamp  
+             */
+            final class $class_name extends \UCRM\Data\Model
             {
                 $primary_key
-                
                 $fields
-                
                 $foreign_keys
-                
-                
-                
-                /**
-                 * $class_name constructor.
-                 * @param PDO \$pdo PHP Data Object
-                 * @param array \$populate (optional) Values with which to initialize this object.
-                 */ 
-                public function __construct(PDO \$pdo, array \$populate = [])
-                {
-                    parent::__construct(\$pdo, \"$table\");
-                }
             }
         ", -12);
 
-        //echo $class_code;
+        // Ignore the Auto-Generated Timestamp when comparing for changes in the code.
+        $old_code = preg_replace("/Auto-Generated on .+ by MAPPER/","", file_get_contents($class_path));
+        $new_code = preg_replace("/Auto-Generated on .+ by MAPPER/","", $class_code);
 
-        if(!file_exists($class_path) || file_get_contents($class_path) !== $class_code)
+        if(!file_exists($class_path) || $old_code !== $new_code)
             file_put_contents($class_path, $class_code);
 
         //$full_name = "UCRM\\Data\\Models\\$class_name";
@@ -183,13 +175,15 @@ final class MAPPER
             /** @const string The table name of this Model. */
             protected const TABLE_NAME = \"$table\";
         
+        
+        
             /**
              * @var $php_type
              */
             protected \$$key_name;
             
             /**
-             * @return $php_type | null
+             * @return $php_type|null
              */
             public function $get_name(): ?$php_type
             {
@@ -226,18 +220,19 @@ final class MAPPER
 
             $code[] = Code::inline("
                 /**
-                 * @var $php_type | null
+                 * @var $php_type|null
                  */
                 protected \$$key_name;
                 
                 /**
-                 * @return $php_class | null
+                 * @return $php_class|null
+                 * @throws \UCRM\Data\Exceptions\DatabaseQueryException
                  */
                 public function $get_name(): ?$php_class
                 {
                     // TODO: Handle non-lazy loading also???
-                    \$$foreign_table = new $php_class(\$this->pdo);
-                    \${$foreign_table}->getById(\$this->$key_name);
+                    /** @var $php_class \${$foreign_table} */
+                    \${$foreign_table} = {$php_class}::getById(\$this->$key_name);
                     return \$$foreign_table;
                 }
                 
@@ -334,7 +329,7 @@ final class MAPPER
                 protected \$$col_name;
                 
                 /**
-                 * @return $php_type | null
+                 * @return $php_type|null
                  */
                 public function $get_name(): ?$php_type
                 {
@@ -347,7 +342,7 @@ final class MAPPER
                 public function $set_name($php_type \$value): void
                 {
                     \$this->$col_name = \$value;
-                }                
+                }
             ");
         }
 

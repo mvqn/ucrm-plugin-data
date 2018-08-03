@@ -2,13 +2,16 @@
 declare(strict_types=1);
 
 namespace UCRM\Data\Models;
-require __DIR__."/../../../../vendor/autoload.php";
-
-use PDO;
-use UCRM\Data\Model;
 
 
-final class AppKey extends Model
+/**
+ * Class AppKey
+ *
+ * @package UCRM\Data\Models
+ * @author  Ryan Spaeth <rspaeth@mvqn.net>
+ * @version Auto-Generated on 08/02/2018 @ 19:07:38 (GMT-07:00) by MAPPER  
+ */
+final class AppKey extends \UCRM\Data\Model
 {
     /** @const string The column name of the PRIMARY KEY of this Model. */
     protected const PRIMARY_KEY = "key_id"; 
@@ -16,27 +19,28 @@ final class AppKey extends Model
     /** @const string The table name of this Model. */
     protected const TABLE_NAME = "app_key";
 
+
+
     /**
      * @var int
      */
     protected $key_id;
     
     /**
-     * @return int | null
+     * @return int|null
      */
     public function getKeyId(): ?int
     {
         return $this->key_id;
     }
 
-    
     /**
      * @var string
      */
     protected $name;
     
     /**
-     * @return string | null
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -49,7 +53,7 @@ final class AppKey extends Model
     public function setName(string $value): void
     {
         $this->name = $value;
-    }                
+    }
 
     /**
      * @var string
@@ -57,7 +61,7 @@ final class AppKey extends Model
     protected $key;
     
     /**
-     * @return string | null
+     * @return string|null
      */
     public function getKey(): ?string
     {
@@ -70,7 +74,7 @@ final class AppKey extends Model
     public function setKey(string $value): void
     {
         $this->key = $value;
-    }                
+    }
 
     /**
      * @var string
@@ -78,7 +82,7 @@ final class AppKey extends Model
     protected $type;
     
     /**
-     * @return string | null
+     * @return string|null
      */
     public function getType(): ?string
     {
@@ -91,7 +95,7 @@ final class AppKey extends Model
     public function setType(string $value): void
     {
         $this->type = $value;
-    }                
+    }
 
     /**
      * @var string
@@ -99,7 +103,7 @@ final class AppKey extends Model
     protected $created_date;
     
     /**
-     * @return string | null
+     * @return string|null
      */
     public function getCreatedDate(): ?string
     {
@@ -112,7 +116,7 @@ final class AppKey extends Model
     public function setCreatedDate(string $value): void
     {
         $this->created_date = $value;
-    }                
+    }
 
     /**
      * @var string
@@ -120,7 +124,7 @@ final class AppKey extends Model
     protected $last_used_date;
     
     /**
-     * @return string | null
+     * @return string|null
      */
     public function getLastUsedDate(): ?string
     {
@@ -133,22 +137,22 @@ final class AppKey extends Model
     public function setLastUsedDate(string $value): void
     {
         $this->last_used_date = $value;
-    }                
+    }
 
-    
     /**
-     * @var int | null
+     * @var int|null
      */
     protected $plugin_id;
     
     /**
-     * @return Plugin | null
+     * @return Plugin|null
+     * @throws \UCRM\Data\Exceptions\DatabaseQueryException
      */
     public function getPlugin(): ?Plugin
     {
         // TODO: Handle non-lazy loading also???
-        $plugin = new Plugin($this->pdo);
-        $plugin->getById($this->plugin_id);
+        /** @var Plugin $plugin */
+        $plugin = Plugin::getById($this->plugin_id);
         return $plugin;
     }
     
@@ -161,16 +165,4 @@ final class AppKey extends Model
         //$this->plugin = $value;
     }   
 
-    
-    
-    
-    /**
-     * AppKey constructor.
-     * @param PDO $pdo PHP Data Object
-     * @param array $populate (optional) Values with which to initialize this object.
-     */ 
-    public function __construct(PDO $pdo, array $populate = [])
-    {
-        parent::__construct($pdo, "app_key");
-    }
 }

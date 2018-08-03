@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 namespace UCRM\Data;
-require __DIR__ . "/../../../vendor/autoload.php";
+//require __DIR__ . "/../../../vendor/autoload.php";
 
 use PDO;
 use ArrayAccess;
@@ -22,7 +22,7 @@ class ModelCollection implements ArrayAccess
             if($model instanceof Model)
                 $this->models[] = $model;
             else
-                throw new ModelCollectionTypeException("ModelCollection expects only Model objects!");
+                throw new DatabaseQueryException("ModelCollection expects only Model objects!");
         }
     }
 
